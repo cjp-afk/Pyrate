@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  pyrate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: pyrate:latest
+    container_name: pyrate-scanner
+    volumes:
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+      - ./config:/app/config
+      - ./plugins:/app/plugins
+    environment:
+      - PYRATE_DEBUG=false
+      - PYRATE_LOGGING__LEVEL=INFO
+      - PYRATE_LOGGING__FILE_PATH=/app/logs/pyrate.log
+      - PYRATE_REPORTS__OUTPUT_DIRECTORY=/app/reports
+    networks:
+      - pyrate-network
+    restart: unless-stopped
+    # Override default command for interactive use
+    # command: ["tail", "-f", "/dev/null"]
+
+  # Optional: Add a web interface service in the future
+  # pyrate-web:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.web
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - pyrate
+  #   networks:
+  #     - pyrate-network
+
+networks:
+  pyrate-network:
+    driver: bridge
+
+volumes:
+  pyrate-data:
+    driver: local

@@ -1,0 +1,1 @@
+"""Test suite for Pyrate vulnerability scanner."""
