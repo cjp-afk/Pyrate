@@ -1,4 +1,0 @@
-
-
-class PyrateEngine:
-    pass
