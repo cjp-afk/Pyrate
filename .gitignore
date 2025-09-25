@@ -60,6 +60,12 @@ Pipfile.lock
 # poetry
 poetry.lock
 
+# ruff
+.ruff-cache/
+
+# pytest
+.pytest_cache/
+
 # mypy
 .mypy_cache/
 .dmypy.json
