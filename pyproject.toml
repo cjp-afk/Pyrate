@@ -7,6 +7,15 @@ requires-python = ">=3.13"
 
 dependencies = []
 
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# Tell setuptools which top-level packages to include
+include = ["pyrate*", "pyratelib*"]
+
+
 [tool.uv]
 dev-dependencies = [
     "ruff",
